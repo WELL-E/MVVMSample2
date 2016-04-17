@@ -1,0 +1,54 @@
+﻿<Window x:Class="MVVMSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow"
+        Width="525"
+        Height="350"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Button Name="BtnShowPerson"
+                    Grid.Row="0"
+                    Height="23"
+                    Content="添加" 
+                    Command="{Binding Path=AddPersonCmd}"/>
+            <ListView Name="LvPersons"
+                      Grid.Row="1"
+                      ItemsSource="{Binding Path=Persons}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="姓名" Width="80" 
+                                        DisplayMemberBinding="{Binding Path=Name}"/>
+                        <GridViewColumn Header="性别" Width="80" 
+                                        DisplayMemberBinding="{Binding Path=Sex}"/>
+                        <GridViewColumn Header="年龄" Width="80"
+                                        DisplayMemberBinding="{Binding Path=Age}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <TextBlock Grid.Row="2" Text="{Binding Path=PersonProfile}" />
+        </Grid>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Height="23"
+                    Grid.Row="0"
+                    Command="{Binding Path=NavigationCmd}"
+                    Content="导航" />
+            <WebBrowser Grid.Row="1" Name="Wb" />
+        </Grid>
+    </Grid>
+</Window>
